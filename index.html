@@ -342,6 +342,16 @@
       font-family: var(--font-mono); font-size: 0.72rem;
       color: var(--accent); letter-spacing: 0.06em; white-space: nowrap;
     }
+    .project-gh {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1rem;
+      font-family: var(--font-mono); font-size: 0.72rem;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .project-gh:hover { color: var(--accent); }
+    .project-gh::before { content: '⌥'; font-size: 0.8rem; }
 
     /* ── CERTS ── */
     .certs-grid {
@@ -349,22 +359,27 @@
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 1rem;
     }
-    .cert-card {
+    a.cert-card {
+      display: block;
+      text-decoration: none;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px; padding: 1.5rem;
       position: relative; overflow: hidden;
       transition: border-color 0.22s, transform 0.22s;
+      cursor: pointer;
     }
-    .cert-card::after {
-      content: '✓';
+    a.cert-card::after {
+      content: '↗';
       position: absolute; top: 1rem; right: 1rem;
-      font-size: 0.75rem; color: var(--accent); opacity: 0.5;
+      font-size: 0.85rem; color: var(--accent); opacity: 0.5;
+      transition: opacity 0.2s;
     }
-    .cert-card:hover {
+    a.cert-card:hover {
       border-color: rgba(100, 255, 218, 0.32);
       transform: translateY(-4px);
     }
+    a.cert-card:hover::after { opacity: 1; }
     .cert-issuer {
       font-family: var(--font-mono); font-size: 0.68rem;
       color: var(--accent); text-transform: uppercase;
@@ -399,6 +414,86 @@
     .contact-links {
       display: flex; justify-content: center;
       flex-wrap: wrap; gap: 0.9rem;
+    }
+
+    /* ── CV CARD ── */
+    .cv-card {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      margin-top: 1.25rem;
+      padding: 1.25rem 1.75rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.22s, transform 0.22s;
+    }
+    .cv-card:hover {
+      border-color: rgba(100, 255, 218, 0.35);
+      transform: translateY(-2px);
+    }
+    .cv-card-left { display: flex; align-items: center; gap: 1rem; }
+    .cv-icon { font-size: 1.75rem; }
+    .cv-label {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1rem; color: var(--white);
+    }
+    .cv-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+    .cv-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .cv-btn {
+      padding: 0.5rem 1.1rem;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-family: var(--font-mono); font-size: 0.75rem;
+      letter-spacing: 0.05em; border-radius: 4px;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .cv-btn:hover { background: rgba(100,255,218,0.1); }
+    .cv-btn-dl {
+      background: var(--accent); color: var(--bg);
+      border-color: var(--accent); font-weight: 600;
+    }
+    .cv-btn-dl:hover { background: transparent; color: var(--accent); }
+
+    /* ── CV MODAL ── */
+    .cv-modal {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      align-items: center; justify-content: center;
+    }
+    .cv-modal.open { display: flex; }
+    .cv-modal-bg {
+      position: absolute; inset: 0;
+      background: rgba(5,11,20,0.88);
+      backdrop-filter: blur(6px);
+    }
+    .cv-modal-box {
+      position: relative; z-index: 1;
+      width: min(820px, 95vw);
+      height: min(90vh, 900px);
+      background: var(--card);
+      border: 1px solid rgba(100,255,218,0.2);
+      border-radius: 14px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .cv-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .cv-close {
+      background: none; border: none;
+      color: var(--muted); font-size: 1rem;
+      cursor: pointer; transition: color 0.2s;
+      padding: 0.2rem 0.4rem;
+    }
+    .cv-close:hover { color: var(--accent); }
+    .cv-frame {
+      flex: 1; width: 100%; border: none;
+      background: #fff;
     }
 
     /* ── FOOTER ── */
@@ -617,6 +712,7 @@
             <li>Modelo de machine learning com Scikit-learn para treinamento e classificação</li>
             <li>Manipulação e limpeza de dados com Pandas garantindo qualidade do pipeline</li>
           </ul>
+          <a class="project-gh" href="https://github.com/NicolasCabralR/correcao_de_dataset_desbalanceado_com_ia" target="_blank">Ver no GitHub</a>
         </div>
         <div class="project-year">2025</div>
       </div>
@@ -633,6 +729,7 @@
             <li>Expansão e refinamento contínuo da base de conhecimento da IA</li>
             <li>Processamento e resposta automatizados de consultas com Python</li>
           </ul>
+          <a class="project-gh" href="https://github.com/NicolasCabralR/chatbot_com_RAG" target="_blank">Ver no GitHub</a>
         </div>
         <div class="project-year">2025</div>
       </div>
@@ -647,6 +744,7 @@
             <li>Sistema com operações CRUD: inclusão, conclusão e remoção de tarefas</li>
             <li>Programação estruturada com controle de estado e persistência de dados</li>
           </ul>
+          <a class="project-gh" href="https://github.com/NicolasCabralR/Mini-projeto---Sistema-de-gerenciamento-de-tarefas" target="_blank">Ver no GitHub</a>
         </div>
         <div class="project-year">2024</div>
       </div>
@@ -664,26 +762,26 @@
       <div class="section-rule"></div>
     </div>
     <div class="certs-grid">
-      <div class="cert-card reveal">
+      <a class="cert-card reveal" href="https://app.rocketseat.com.br/certificates/0489b18a-2b42-4190-af34-a8dcdc1811ef" target="_blank">
         <div class="cert-issuer">Rocketseat</div>
         <div class="cert-name">Data Analytics</div>
         <div class="cert-date">Maio 2026</div>
-      </div>
-      <div class="cert-card reveal">
+      </a>
+      <a class="cert-card reveal" href="https://app.rocketseat.com.br/certificates/092c3250-a88a-46a2-9151-6da0f8ad3db5" target="_blank">
         <div class="cert-issuer">Rocketseat</div>
         <div class="cert-name">IA para Dados</div>
         <div class="cert-date">Maio 2026</div>
-      </div>
-      <div class="cert-card reveal">
+      </a>
+      <a class="cert-card reveal" href="https://app.rocketseat.com.br/certificates/fcc5e5ec-fe66-4962-b469-c87289397504" target="_blank">
         <div class="cert-issuer">Rocketseat</div>
         <div class="cert-name">Power BI com IA</div>
         <div class="cert-date">Março 2026</div>
-      </div>
-      <div class="cert-card reveal">
+      </a>
+      <a class="cert-card reveal" href="https://app.rocketseat.com.br/certificates/773dc8fb-4f28-48df-bf23-0d35487d8b10" target="_blank">
         <div class="cert-issuer">Rocketseat</div>
         <div class="cert-name">O básico de Git e GitHub</div>
         <div class="cert-date">Dezembro 2024</div>
-      </div>
+      </a>
     </div>
   </div>
 </div>
@@ -705,6 +803,36 @@
         <a href="https://linkedin.com/in/nicolas-cabral-844438235" target="_blank" class="btn btn-solid">in LinkedIn</a>
       </div>
     </div>
+
+    <!-- CV CARD -->
+    <div class="cv-card reveal" onclick="document.getElementById('cv-modal').classList.add('open')">
+      <div class="cv-card-left">
+        <div class="cv-icon">📄</div>
+        <div>
+          <div class="cv-label">Currículo</div>
+          <div class="cv-desc">Nicolas Cabral · Análise de Dados & IA</div>
+        </div>
+      </div>
+      <div class="cv-actions">
+        <span class="cv-btn">Visualizar</span>
+        <a href="Curriculo_Nicolas.pdf" download="Curriculo_Nicolas.pdf" class="cv-btn cv-btn-dl" onclick="event.stopPropagation()">Baixar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CV MODAL -->
+<div id="cv-modal" class="cv-modal">
+  <div class="cv-modal-bg" onclick="document.getElementById('cv-modal').classList.remove('open')"></div>
+  <div class="cv-modal-box">
+    <div class="cv-modal-header">
+      <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--accent)">curriculo.pdf</span>
+      <div style="display:flex;gap:0.75rem;align-items:center">
+        <a href="Curriculo_Nicolas.pdf" download="Curriculo_Nicolas.pdf" class="cv-btn cv-btn-dl">Baixar</a>
+        <button class="cv-close" onclick="document.getElementById('cv-modal').classList.remove('open')">✕</button>
+      </div>
+    </div>
+    <iframe src="Curriculo_Nicolas.pdf" class="cv-frame" title="Currículo Nicolas Cabral"></iframe>
   </div>
 </div>
 
